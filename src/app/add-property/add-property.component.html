@@ -1,0 +1,119 @@
+<div class="p-5 row m-5" [formGroup]="addPropertyForm">
+    <div class="row">
+        <p class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name">
+                <mat-error *ngIf="addPropertyForm.get('name')?.hasError('required')">Name is required</mat-error>
+            </mat-form-field>
+        </p>
+    </div>
+
+    <div class="row align-items-center">
+        <p class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title">
+                <mat-error *ngIf="addPropertyForm.get('title')?.hasError('title')">Name is required</mat-error>
+            </mat-form-field>
+        </p>
+
+        <p class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+                <mat-error *ngIf="addPropertyForm.get('description')?.hasError('description')">Name is
+                    required</mat-error>
+            </mat-form-field>
+        </p>
+    </div>
+
+    <div class="row row align-items-center">
+        <p class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Building Name</mat-label>
+                <input matInput formControlName="buildingName">
+                <mat-error *ngIf="addPropertyForm.get('buildingName')?.hasError('buildingName')">Name is
+                    required</mat-error>
+            </mat-form-field>
+        </p>
+
+        <p class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Street address</mat-label>
+                <textarea matInput formControlName="streetAddress"></textarea>
+                <mat-error *ngIf="addPropertyForm.get('streetAddress')?.hasError('streetAddress')">Name is
+                    required</mat-error>
+            </mat-form-field>
+        </p>
+
+    </div>
+
+    <div class="row row align-items-center">
+        <p class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Square Feet</mat-label>
+                <input matInput formControlName="squareFeet">
+                <mat-error *ngIf="addPropertyForm.get('squareFeet')?.hasError('squareFeet')">Name is
+                    required</mat-error>
+            </mat-form-field>
+        </p>
+
+        <p class="col-12 col-md-6 ps-4">
+            <label>Shared property</label>
+            <mat-radio-group aria-label="Shared property" formControlName="sharedProperty">
+                @for (item of sharedProperty; track item) {
+                <mat-radio-button [value]="item">{{item}}</mat-radio-button>
+                }
+            </mat-radio-group>
+        </p>
+    </div>
+
+    <div class="row row align-items-center">
+        <p class="col-12 col-md-6">
+            <label>Lease type</label>
+            <mat-radio-group aria-label="Lease type" formControlName="leaseType">
+                @for (item of leaseType; track item) {
+                <mat-radio-button [value]="item">{{item}}</mat-radio-button>
+                }
+            </mat-radio-group>
+        </p>
+
+        <p class="col-12 col-md-6 ps-4">
+            <label>Furnished</label>
+            <mat-radio-group aria-label="Furnished" formControlName="furnishedStatus">
+                @for (item of furnishedStatus; track item) {
+                <mat-radio-button [value]="item">{{item}}</mat-radio-button>
+                }
+            </mat-radio-group>
+        </p>
+    </div>
+
+    <div formArrayName="amenities" class="row">
+        <label>Amenities</label>
+        <div *ngFor="let option of amenitiesList; let i = index" class="col-md-3 col-12">
+            <mat-checkbox [formControlName]="i">{{ option }}</mat-checkbox>
+        </div>
+    </div>
+
+    <div class="row row align-items-center ">
+        <div class="col-12 col-md-6">
+            <div class="p-4 ps-0">
+                <mat-label>Choose Image</mat-label>
+                <input type="file" accept="image/png, image/jpeg" (change)="onFileSelected($event)"
+                    formControlName="image" />
+            </div>
+        </div>
+        <div *ngIf="imageUrl" class="col-12 col-md-6">
+            <div class="p-4 ps-0">
+                <img [src]="imageUrl" alt="Selected Image" height="150" width="150" />
+            </div>
+        </div>
+    </div>
+
+    <div class="p-3 text-center">
+        <button mat-stroked-button [disabled]="addPropertyForm.invalid" (click)="onSubmit()">Add
+            Property</button>
+    </div>
+
+</div>

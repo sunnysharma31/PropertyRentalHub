@@ -1,0 +1,94 @@
+<div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            <h5>Search Properties</h5>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+                <div class="form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Building Name</mat-label>
+                    <input matInput formControlName="buildingName" id="buildingName" placeholder="Enter building name" />
+                  </mat-form-field>
+                </div>
+              
+                <div class="form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Street Address</mat-label>
+                    <input matInput formControlName="streetAddress" id="streetAddress" placeholder="Enter street address" />
+                  </mat-form-field>
+                </div>
+              
+                <div class="form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Square Feet</mat-label>
+                    <input matInput formControlName="squareFeet" id="squareFeet" placeholder="Enter square feet" />
+                  </mat-form-field>
+                </div>
+              
+                <div class="form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Shared Property</mat-label>
+                    <input matInput formControlName="sharedProperty" id="sharedProperty" placeholder="Yes or No" />
+                  </mat-form-field>
+                </div>
+              
+                <div class="form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Lease Type</mat-label>
+                    <input matInput formControlName="leaseType" id="leaseType" placeholder="Enter lease type" />
+                  </mat-form-field>
+                </div>
+              
+                <div class="form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Furnished Status</mat-label>
+                    <input matInput formControlName="furnishedStatus" id="furnishedStatus" placeholder="Yes or No" />
+                  </mat-form-field>
+                </div>
+              
+                <div class="form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Amenities</mat-label>
+                    <input matInput formControlName="amenities" id="amenities" placeholder="Comma separated amenities" />
+                  </mat-form-field>
+                </div>
+              
+                <button type="submit" mat-raised-button color="primary" class="mt-3" [disabled]="searchForm.invalid">Search</button>
+              </form>
+              
+          </div>
+        </div>
+  
+        <div *ngIf="properties.length > 0" class="mt-4">
+          <h3>Property List</h3>
+          <div class="list-group">
+            <div *ngFor="let property of properties" class="list-group-item">
+                <div class="row">
+                    <div class="col-md-5 col-12">
+                        <h5>{{ property.buildingName }}</h5>
+                        <p>{{ property.streetAddress }}</p>
+                        <p>{{ property.squareFeet }} sq. ft. | {{ property.leaseType }} | {{ property.furnishedStatus }}</p>
+                        <p>Amenities: {{ property.amenities.join(', ') }}</p>
+                        <p>
+                            <button mat-button (click)="viewDetails(property?.id)">View details</button>
+                        </p>
+                    </div>
+                    <div class="col-md-5 col-12">
+                        <img [src]="property?.image" alt="Property Image" class="img-fluid w-100" />
+                    </div>
+                </div>
+
+            </div>
+          </div>
+        </div>
+  
+        <div *ngIf="properties.length === 0" class="mt-4">
+          <p>No properties found matching your search criteria.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

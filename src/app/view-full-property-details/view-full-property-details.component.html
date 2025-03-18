@@ -1,0 +1,55 @@
+<div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <mat-card class="shadow-sm">
+          <div class="row">
+            <div class="col-md-12">
+              <!-- Property Image -->
+              <img [src]="property?.image || 'https://via.placeholder.com/150'" alt="Property Image" class="img-fluid w-100" />
+              <mat-card-header class="py-4">
+                <mat-card-title>{{ property.title }}</mat-card-title>
+                <mat-card-subtitle>{{ property.buildingName }}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p><strong>Owner:</strong> {{ property.name }}</p>
+                <p><strong>Address:</strong> {{ property.streetAddress }}</p>
+                <p><strong>Square Feet:</strong> {{ property.squareFeet }} sq. ft.</p>
+                <p><strong>Lease Type:</strong> {{ property.leaseType }}</p>
+                <p><strong>Furnished:</strong> {{ property.furnishedStatus }}</p>
+                <p><strong>Shared Property:</strong> {{ property.sharedProperty }}</p>
+                <p><strong>Amenities:</strong>
+                  <span *ngFor="let amenity of property.amenities; let last = last">
+                    {{ amenity }}<span *ngIf="!last">, </span>
+                  </span>
+                </p>
+                <p><strong>Email:</strong> <a href="mailto:{{ property.email }}">{{ property.email }}</a></p>
+                <p><strong>User Type:</strong> {{ property.userType }}</p>
+              </mat-card-content>
+            </div>
+          </div>
+        </mat-card>
+  
+        <mat-card class="shadow-sm mt-4">
+          <mat-card-header class="py-4">
+            <mat-card-title>Comments</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <form (ngSubmit)="submitComment()" [formGroup]="commentForm" *ngIf="isAuthenticated" >
+              <mat-form-field class="w-100">
+                <mat-label>Leave a comment</mat-label>
+                <textarea matInput formControlName="comment" placeholder="Write your comment" rows="3"></textarea>
+              </mat-form-field>
+              <button mat-raised-button color="primary" type="submit" [disabled]="commentForm.invalid">Submit</button>
+            </form>
+  
+            <div *ngFor="let comment of propertyComments">
+              <div class="comment mt-3">
+                <strong>{{ comment.user }}:</strong> {{ comment.text }}
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  
