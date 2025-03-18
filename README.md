@@ -2,6 +2,9 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
 
+## Deployed URL
+https://sunnysharma31.github.io/PropertyRentalHub/properties
+
 ## Property Poster credentials
 email : owner1@renthub.com
 password : 12345
