@@ -2,6 +2,17 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
 
+## Property Poster credentials
+email : owner1@renthub.com
+password : 12345
+
+Property Renter credentails
+email : renter1@renthub.com 
+password: 12345
+
+## Github project url
+https://github.com/sunnysharma31/PropertyRentalHub.git
+
 ## Development server
 
 To start a local development server, run:
